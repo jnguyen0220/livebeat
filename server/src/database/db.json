@@ -77,19 +77,6 @@
       }
     },
     {
-      "name": "c7c45d9a-f965-4b84-b16e-0d6741ef7a1a",
-      "path": "rest_job.js",
-      "interval": "5s",
-      "enabled": true,
-      "worker": {
-        "workerData": {
-          "uri": "gitlab.ep.shell.com",
-          "port": 443,
-          "method": "GET"
-        }
-      }
-    },
-    {
       "name": "317b1e21-6cd1-4a64-897b-875c344a1b7a",
       "path": "rest_job.js",
       "interval": "5s",
