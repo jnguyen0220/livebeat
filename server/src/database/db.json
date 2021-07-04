@@ -1,0 +1,210 @@
+{
+  "jobs": [
+    {
+      "name": "6a970260-daec-4f11-91c3-f253fc125fc3",
+      "path": "rest_job.js",
+      "interval": "5s",
+      "enabled": true,
+      "worker": {
+        "workerData": {
+          "uri": "google.com",
+          "port": 443,
+          "method": "GET"
+        }
+      }
+    },
+    {
+      "name": "081d98be-f45d-448e-a795-b25816b96e6d",
+      "path": "rest_job.js",
+      "interval": "5s",
+      "enabled": true,
+      "worker": {
+        "workerData": {
+          "uri": "amazon.com",
+          "port": 443,
+          "method": "GET"
+        }
+      }
+    },
+    {
+      "name": "004de85d-a23e-4821-884a-bf720240aa40",
+      "path": "rest_job.js",
+      "interval": "5s",
+      "enabled": true,
+      "worker": {
+        "workerData": {
+          "uri": "aftonbladet.se",
+          "port": 443,
+          "method": "GET"
+        }
+      }
+    },
+    {
+      "name": "6d660e0c-a4fb-470e-9497-949b8ec6a445",
+      "path": "ping_job.js",
+      "interval": "5s",
+      "enabled": true,
+      "worker": {
+        "workerData": {
+          "uri": "google.com",
+          "port": 80
+        }
+      }
+    },
+    {
+      "name": "234db49f-03f5-47b1-8561-d846f775837d",
+      "path": "ping_job.js",
+      "interval": "5s",
+      "enabled": true,
+      "worker": {
+        "workerData": {
+          "uri": "8.8.8.8",
+          "port": 53
+        }
+      }
+    },
+    {
+      "name": "749168ef-3c21-40bc-846b-127eac02b718",
+      "path": "rest_job.js",
+      "interval": "5s",
+      "enabled": true,
+      "worker": {
+        "workerData": {
+          "uri": "aftonbladet.se",
+          "port": 80,
+          "method": "GET"
+        }
+      }
+    },
+    {
+      "name": "c7c45d9a-f965-4b84-b16e-0d6741ef7a1a",
+      "path": "rest_job.js",
+      "interval": "5s",
+      "enabled": true,
+      "worker": {
+        "workerData": {
+          "uri": "gitlab.ep.shell.com",
+          "port": 443,
+          "method": "GET"
+        }
+      }
+    },
+    {
+      "name": "317b1e21-6cd1-4a64-897b-875c344a1b7a",
+      "path": "rest_job.js",
+      "interval": "5s",
+      "enabled": true,
+      "worker": {
+        "workerData": {
+          "uri": "ebay.com",
+          "port": 80,
+          "method": "GET"
+        }
+      }
+    },
+    {
+      "name": "6cd628c2-216a-4c2e-9b08-3bf4e3618f02",
+      "path": "rest_job.js",
+      "interval": "5s",
+      "enabled": true,
+      "worker": {
+        "workerData": {
+          "uri": "ebay.com",
+          "port": 443,
+          "method": "GET"
+        }
+      }
+    },
+    {
+      "name": "7dbd8120-8047-424f-90b4-c0ea8be73d61",
+      "path": "rest_job.js",
+      "interval": "5s",
+      "enabled": true,
+      "worker": {
+        "workerData": {
+          "uri": "yahoo.com",
+          "port": 80,
+          "method": "GET"
+        }
+      }
+    },
+    {
+      "name": "127e1ce1-e2ed-4d10-8d3a-cd319d0d3cfa",
+      "path": "rest_job.js",
+      "interval": "5s",
+      "enabled": true,
+      "worker": {
+        "workerData": {
+          "uri": "yahoo.com",
+          "port": 443,
+          "method": "GET"
+        }
+      }
+    },
+    {
+      "name": "6af6e194-6fed-461c-93a2-53fea1f8687f",
+      "path": "rest_job.js",
+      "interval": "5s",
+      "enabled": true,
+      "worker": {
+        "workerData": {
+          "uri": "blue3.com",
+          "port": 80,
+          "method": "GET"
+        }
+      }
+    },
+    {
+      "name": "be7eeea8-90c2-45c7-9546-cad5db2288f2",
+      "path": "rest_job.js",
+      "interval": "5s",
+      "enabled": true,
+      "worker": {
+        "workerData": {
+          "uri": "shell.com",
+          "port": 80,
+          "method": "GET"
+        }
+      }
+    },
+    {
+      "name": "bad8218f-7fe0-4fe3-9393-35a47cb788cb",
+      "path": "rest_job.js",
+      "interval": "5s",
+      "enabled": true,
+      "worker": {
+        "workerData": {
+          "uri": "microcenter.com",
+          "port": 443,
+          "method": "GET"
+        }
+      }
+    },
+    {
+      "name": "fe79a6b9-4a2e-4e2d-8721-affad5288cb0",
+      "path": "rest_job.js",
+      "interval": "5s",
+      "enabled": true,
+      "worker": {
+        "workerData": {
+          "uri": "microcenter.com",
+          "port": 80,
+          "method": "GET"
+        }
+      }
+    },
+    {
+      "name": "89b77c2e-cd5e-4c99-885f-ebf769e9ff95",
+      "path": "rest_job.js",
+      "interval": "5s",
+      "enabled": true,
+      "worker": {
+        "workerData": {
+          "uri": "paypal.com",
+          "port": 80,
+          "method": "GET"
+        }
+      }
+    }
+  ]
+}

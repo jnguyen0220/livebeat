@@ -1,0 +1,9 @@
+html {
+    overflow-y: auto;
+}
+
+.grid {
+    height: calc(100vh - 144px);
+    min-height: 100%;
+    max-height: 100%;
+}
