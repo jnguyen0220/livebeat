@@ -1,5 +1,4 @@
 FROM node:lts-alpine AS ui-build
-ENV VUE_APP_PORT=5000
 WORKDIR /root/
 COPY client/ ./client/
 RUN cd client && npm install && npm run build
