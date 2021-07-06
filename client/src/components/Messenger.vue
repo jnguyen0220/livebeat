@@ -1,6 +1,5 @@
 <script>
 import ioClient from "socket.io-client";
-import {CONSTANT} from "../config";
 
 export default {
   name: "messenger",
@@ -34,7 +33,7 @@ export default {
     return null;
   },
   beforeMount() {
-    this.socket = ioClient(CONSTANT.SOCKET_URL);
+    this.socket = ioClient(process.env.BASE_URL);
     [
         { topic: 'welcome', func: this.onWelcome },
         { topic: 'disabled', func: this.onDisabled },
