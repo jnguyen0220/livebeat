@@ -13,6 +13,9 @@
             <span>Global Filter</span>
           </v-col>
           <v-col style="text-align: right;">
+            <span>Clients</span>
+          </v-col>
+          <v-col style="text-align: right;">
             <span>Online Since</span>
           </v-col>
         </v-row>
@@ -26,6 +29,9 @@
            <v-col align-self="center">
             <v-text-field v-model="globalFilter" clearable dense hide-details="auto" prepend-inner-icon="mdi-magnify">
             </v-text-field>
+          </v-col>
+          <v-col style="text-align: right;">
+            <span>{{clients}}</span>
           </v-col>
           <v-col style="text-align: right;">
             <span>{{online_since}}</span>
@@ -56,6 +62,7 @@
       sendMessage: null,
       filterStatus: null,
       online_since: null,
+      clients: 0,
       filterData: null,
       rowSelected: [],
       isOpen: false,
@@ -110,6 +117,9 @@
             break;
           case "remove":
             this.action = {type: 'remove', message: _message };
+            break;
+          case "connection": 
+            this.clients = _message;
             break;
         }
       },

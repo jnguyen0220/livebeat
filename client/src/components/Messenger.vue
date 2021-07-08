@@ -22,6 +22,9 @@ export default {
     },
     onRemove(data) {
       this.$emit('on-message', {type: 'remove', message: data.ids});
+    },
+    onConnection(data) {
+      this.$emit('on-message', {type: 'connection', message: data});
     }
   },
   watch: { 
@@ -33,13 +36,14 @@ export default {
     return null;
   },
   beforeMount() {
-    this.socket = ioClient(process.env.BASE_URL);
+    this.socket = ioClient(process.env.VUE_APP_SOCKET_URL);
     [
         { topic: 'welcome', func: this.onWelcome },
         { topic: 'disabled', func: this.onDisabled },
         { topic: 'result', func: this.onResult },
         { topic: 'add', func: this.onAdd },
         { topic: 'remove', func: this.onRemove },
+        { topic: 'connection', func: this.onConnection },
     ].forEach(x => this.socket.on(x.topic, x.func));
   }
 }

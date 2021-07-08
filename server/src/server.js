@@ -102,16 +102,24 @@ const onRemove = (ids) => {
   io.emit('remove', { ids });
 }
 
+let clients = 0;
+
 io.on("connection", (socket) => {
   console.log("connection established");
+  clients += 1;
   socket.emit("welcome", { 
     message: transform_database(db.all()), 
     online_since: _ONLINE_SINCE
   });
+  io.emit("connection", clients);
   [
     { topic: 'disabled', func: onDisabled },
     { topic: 'add', func: onAdd },
-    { topic: 'remove', func: onRemove }
+    { topic: 'remove', func: onRemove },
+    { topic: 'disconnect', func: () => {
+      clients -= 1;
+      io.emit("connection", clients);
+    }},
   ].forEach(x => socket.on(x.topic, x.func));
 });
 
