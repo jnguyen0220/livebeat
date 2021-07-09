@@ -25,6 +25,9 @@ export default {
     },
     onConnection(data) {
       this.$emit('on-message', {type: 'connection', message: data});
+    },
+    onExport(data) {
+      this.$emit('on-message', {type: 'export', message: data});
     }
   },
   watch: { 
@@ -44,6 +47,7 @@ export default {
         { topic: 'add', func: this.onAdd },
         { topic: 'remove', func: this.onRemove },
         { topic: 'connection', func: this.onConnection },
+        { topic: 'export', func: this.onExport },
     ].forEach(x => this.socket.on(x.topic, x.func));
   }
 }

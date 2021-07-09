@@ -1,5 +1,6 @@
 <template>
     <v-card>
+      <a hidden ref="download_btn" />
       <v-app-bar outlined tile> 
         <v-container fluid>
         <v-row no-gutters class="font-weight-light">
@@ -21,7 +22,7 @@
         </v-row>
         <v-row no-gutters>
           <v-col align-self="center">
-            <action-group @filter="onActionChange" @remove="onRemove" :rowSelected="rowSelected"></action-group>
+            <action-group @filter="onActionChange" @remove="onRemove" @export="onExport" :rowSelected="rowSelected"></action-group>
           </v-col>
            <v-col align-self="center">
             <filter-group :filterData="filterData" @filter="onFilterChange"></filter-group>
@@ -121,6 +122,13 @@
           case "connection": 
             this.clients = _message;
             break;
+          case "export": 
+            const {filename, data} = _message; 
+            const elem = this.$refs.download_btn;
+            elem.download = filename
+            elem.href =  `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(data))}`;
+            elem.click();
+            break;
         }
       },
       onRowDisabled(event) {
@@ -131,6 +139,9 @@
       },
       onRemove(event) {
         this.sendMessage = {type: 'remove', message: event}
+      },
+      onExport() {
+        this.sendMessage = {type: 'export'}
       }
     }
   })

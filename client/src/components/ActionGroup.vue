@@ -12,7 +12,7 @@
       <v-icon small color="blue">mdi-file-import</v-icon>
       <span>Import</span>
     </v-btn>
-    <v-btn small tile>
+    <v-btn small tile @click="onExport">
       <v-icon small color="teal">mdi-file-export</v-icon>
       <span>Export</span>
     </v-btn>
@@ -32,6 +32,9 @@ export default {
     },
     onRemove() {
       this.$emit('remove', this.rowSelected);
+    },
+    onExport() {
+      this.$emit('export', null);
     }
   },
   watch: {

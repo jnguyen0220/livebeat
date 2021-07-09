@@ -93,6 +93,10 @@ const onAdd = ({taskType, source, port, schedule, method}) => {
   io.emit('add', { available: 4, id, uri: source, enabled: true, port, schedule });
 }
 
+const onExport = (socket) => () => {
+  socket.emit('export', {filename: `task-export-${Date.now()}.json`,data:db.all().map(({name, ...rest}) => rest)});
+}
+
 const onRemove = (ids) => {
   ids.forEach(x => {
     breeManager.remove(x);
@@ -102,23 +106,20 @@ const onRemove = (ids) => {
   io.emit('remove', { ids });
 }
 
-let clients = 0;
-
 io.on("connection", (socket) => {
   console.log("connection established");
-  clients += 1;
   socket.emit("welcome", { 
     message: transform_database(db.all()), 
     online_since: _ONLINE_SINCE
   });
-  io.emit("connection", clients);
+  io.emit("connection", io.engine.clientsCount);
   [
     { topic: 'disabled', func: onDisabled },
     { topic: 'add', func: onAdd },
     { topic: 'remove', func: onRemove },
+    { topic: 'export', func: onExport(socket) },
     { topic: 'disconnect', func: () => {
-      clients -= 1;
-      io.emit("connection", clients);
+      io.emit("connection", io.engine.clientsCount);
     }},
   ].forEach(x => socket.on(x.topic, x.func));
 });
