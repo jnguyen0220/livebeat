@@ -38,7 +38,7 @@ const onMessage = ({ name, message }) => {
       enabled: true, 
       uptime: uptime(name, message),
       status_change: status_change(name, message),
-      protocol: item.path === 'ping_job.js' ? 'tcp' : 'http(s)', 
+      protocol: item.path === 'ping_job.js' ? 'tcp' : `http${item.worker.workerData.port === 80 ? '' : 's'}`,
       available: message ? 3 : 1
     });
   }
@@ -87,14 +87,31 @@ const onAdd = ({taskType, source, port, schedule, method}) => {
       }
     }
   }
-  const bree_path = `${__dirname}/jobs/${entity.path}`;
-  db.add(entity);
-  breeManager.add([{...entity, path: bree_path}]);
-  io.emit('add', { available: 4, id, uri: source, enabled: true, port, schedule });
+  addTask([entity]);
+  io.emit('add', [{ available: 4, id, uri: source, enabled: true, port, schedule }]);
+}
+
+const addTask = (entities) => {
+  const bree_items = entities.map((entity) => {
+    const bree_path = `${__dirname}/jobs/${entity.path}`;
+    return {
+      ...entity,
+      path: bree_path
+    }
+  });
+  console.log(bree_items);
+  db.add(entities);
+  breeManager.add(bree_items);
 }
 
 const onExport = (socket) => () => {
   socket.emit('export', {filename: `task-export-${Date.now()}.json`,data:db.all().map(({name, ...rest}) => rest)});
+}
+
+const onImport = (data) => {
+  const result = data.map((x) => ({...x, name: uuidv4()}));
+  addTask(result);
+  io.emit('add', transform_database(result));
 }
 
 const onRemove = (ids) => {
@@ -118,6 +135,7 @@ io.on("connection", (socket) => {
     { topic: 'add', func: onAdd },
     { topic: 'remove', func: onRemove },
     { topic: 'export', func: onExport(socket) },
+    { topic: 'import', func: onImport },
     { topic: 'disconnect', func: () => {
       io.emit("connection", io.engine.clientsCount);
     }},

@@ -48,6 +48,7 @@ export default {
         { topic: 'remove', func: this.onRemove },
         { topic: 'connection', func: this.onConnection },
         { topic: 'export', func: this.onExport },
+        { topic: 'import', func: this.onImport },
     ].forEach(x => this.socket.on(x.topic, x.func));
   }
 }

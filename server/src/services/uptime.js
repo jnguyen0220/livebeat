@@ -15,7 +15,7 @@ const uptime = (id, status) => {
   status && (success += 1);
   total += 1;
   COUNTER.set(id, {success, total});
-  return `${((success/total) * 100).toFixed(1)} %`;
+  return `${((success/total) * 100).toFixed(3)} %`;
 }
 
 const remove_uptime_counter = (id) => {

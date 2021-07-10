@@ -8,7 +8,7 @@
       <v-icon small color="red">mdi-delete</v-icon>
       <span>Remove</span>
     </v-btn>
-    <v-btn small tile>
+    <v-btn small tile @click="onImport">
       <v-icon small color="blue">mdi-file-import</v-icon>
       <span>Import</span>
     </v-btn>
@@ -16,6 +16,7 @@
       <v-icon small color="teal">mdi-file-export</v-icon>
       <span>Export</span>
     </v-btn>
+    <input type="file" hidden ref="import" accept=".json" @change="onFileChange"/>
   </div>
 </template>
 
@@ -35,6 +36,20 @@ export default {
     },
     onExport() {
       this.$emit('export', null);
+    },
+    onImport() {
+      this.$refs.import.click();
+    },
+    onFileChange(e) {
+      const files = e.target.files || e.dataTransfer.files;
+      if (!files.length) return;
+
+      const reader = new FileReader();
+      reader.onload = e => {
+        this.$emit('import', JSON.parse(e.target.result));
+        this.$refs.import.value = '';
+      };
+      reader.readAsText(files[0]);
     }
   },
   watch: {

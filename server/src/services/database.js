@@ -22,10 +22,9 @@ const remove = (name) => {
 const update = (name, params) => {
   database.get("jobs").find({name}).assign(params).write();
 }
-const add = (entity) => {
-  database.get("jobs").push(entity).write();
+const add = (entities) => {
+  database.get("jobs").push(...entities).write();
 }
-
 
 module.exports = {
   all,

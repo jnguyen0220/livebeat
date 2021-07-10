@@ -116,7 +116,7 @@ export default {
           this.gridApi.sizeColumnsToFit();
           break;
         case "add":
-          this.gridApi.applyTransactionAsync({ add: [message] });
+          this.gridApi.applyTransactionAsync({ add: message });
           break;
         case "update":
           const { last_ping_time } = message;
