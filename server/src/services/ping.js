@@ -1,5 +1,5 @@
 const net = require("net");
-const { REQUEST_TIMEOUT} = require('../config.json');
+const { REQUEST_TIMEOUT } = require('../config.json');
 
 const ping = ({uri, port}) => {
   return new Promise((resolve, reject) => {
